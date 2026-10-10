@@ -2,6 +2,10 @@
 
 A full-stack design tool inspired by Canva. Create and edit designs with shapes, text, images, and templates. Features user authentication (email + Google OAuth), a visual canvas editor, and cloud-based image storage.
 
+> **Note: the app is published as "Artboard"**
+>
+> The browser tab title (`frontend/index.html`) and the deployment URL use the name **Artboard** instead of "Canva". Fortinet's web filter flagged the site as a possible phishing or brand-impersonation page because it used the Canva name, which blocked it on networks protected by FortiGuard. Renaming the public-facing title and URL lets the site pass the filter. The repository and code still use "canva-clone" internally.
+
 ## Tech Stack
 
 - **Backend:** Node.js, Express 5, MongoDB (Mongoose)
