@@ -73,8 +73,8 @@ const Index = () => {
             <div className="h-8 w-auto flex items-center">
               <img
                 className="h-full w-auto"
-                src="https://static.canva.com/web/images/8439b51bb7a19f6e65ce1064bc37c197.svg"
-                alt="canva logo"
+                src="/logo.svg"
+                alt="Artboard logo"
               />
             </div>
           </div>
@@ -109,7 +109,7 @@ const Index = () => {
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-slate-400">
             Create, edit, and share beautiful designs in a fast, focused canvas
-            experience inspired by Canva.
+            experience.
           </p>
           <button
             onClick={() => {

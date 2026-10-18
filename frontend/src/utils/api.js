@@ -8,7 +8,7 @@ export const API_BASE_URL = isProduction
   ? "/api"
   : "http://localhost:5000/api";
 
-const token = typeof window !== "undefined" ? localStorage.getItem("canva_token") : null;
+const token = typeof window !== "undefined" ? localStorage.getItem("artboard_token") : null;
 
 const api = axios.create({
   baseURL: API_BASE_URL,

@@ -17,7 +17,7 @@ const AuthCallback = () => {
     }
 
     if (token) {
-      localStorage.setItem("canva_token", token);
+      localStorage.setItem("artboard_token", token);
       toast.success("Signed in successfully");
       window.location.href = "/";
     } else {

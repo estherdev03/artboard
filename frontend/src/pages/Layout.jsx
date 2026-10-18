@@ -36,7 +36,7 @@ const Layout = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem("canva_token");
+    localStorage.removeItem("artboard_token");
     window.location.href = "/";
   };
 
@@ -49,8 +49,8 @@ const Layout = () => {
             <div className="h-8 w-auto flex items-center">
               <img
                 className="h-full w-auto"
-                src="https://static.canva.com/web/images/8439b51bb7a19f6e65ce1064bc37c197.svg"
-                alt="canva logo"
+                src="/logo.svg"
+                alt="Artboard logo"
               />
             </div>
             <span className="hidden sm:inline text-sm font-medium uppercase tracking-[0.2em] text-slate-400">

@@ -12,7 +12,7 @@ const SignupForm = ({ inputHandler, state, setState }) => {
       setLoading(true);
       const { data } = await api.post("/user-register", state);
       setLoading(false);
-      localStorage.setItem("canva_token", data.token);
+      localStorage.setItem("artboard_token", data.token);
       setState({
         name: "",
         email: "",

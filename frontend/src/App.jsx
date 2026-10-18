@@ -13,7 +13,7 @@ import Index from "./pages/Index";
 import AuthCallback from "./pages/AuthCallback";
 import { tokenDecode } from "./utils";
 
-const userInfo = tokenDecode(localStorage.getItem("canva_token"));
+const userInfo = tokenDecode(localStorage.getItem("artboard_token"));
 
 const router = createBrowserRouter([
   {

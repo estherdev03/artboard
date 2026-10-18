@@ -56,8 +56,8 @@ const Header = ({ components, designId }) => {
           <div className="h-7 w-auto flex items-center">
             <img
               className="h-full w-auto"
-              src="https://static.canva.com/web/images/8439b51bb7a19f6e65ce1064bc37c197.svg"
-              alt="canva logo"
+              src="/logo.svg"
+              alt="Artboard logo"
             />
           </div>
           <span className="hidden sm:inline text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
@@ -66,7 +66,7 @@ const Header = ({ components, designId }) => {
         </Link>
 
         <span className="text-sm sm:text-base font-medium text-slate-100">
-          Canva Clone Editor
+          Artboard Editor
         </span>
 
         <div className="flex items-center gap-2">
