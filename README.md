@@ -2,6 +2,8 @@
 
 A full-stack online design tool. Create and edit designs with shapes, text, images, and templates. Features user authentication (email + Google OAuth), a visual canvas editor, and cloud-based image storage.
 
+🔗 **Live Demo:** [artboard-navy.vercel.app](https://artboard-navy.vercel.app)
+
 > **Note on the name**
 >
 > This project was originally called "MERN Canva" / "canva-clone". Fortinet's web filter (FortiGuard) flagged the deployed site as a possible phishing or brand-impersonation page because of the Canva name and logo, which blocked it on protected networks. The project has been renamed to **Artboard** everywhere (title, logo, package names, code, and deployment URL) and no longer loads any third-party brand assets.
@@ -17,7 +19,7 @@ A full-stack online design tool. Create and edit designs with shapes, text, imag
 ## Features
 
 - **Authentication:** Email/password registration and login, Google OAuth
-- **Canvas Editor:** Drag-and-drop design creation with shapes, text, and images
+- **Canvas Editor:** Multi-layer canvas with shapes, text, and images; drag, resize, free rotation, z-index layering, opacity, colour, font size/weight, and image corner radius
 - **Templates:** Browse and use templates for quick designs
 - **Projects:** Save and manage your designs
 - **Image Upload:** Upload custom images, backgrounds and design assets, served through Cloudinary with automatic format and quality optimization
@@ -32,7 +34,9 @@ artboard/
 ├── middlewares/     # JWT verification
 ├── models/          # Mongoose models (User, Design, Template, etc.)
 ├── routes/          # API routes
-├── server.js        # Express app entry point
+├── api/index.js     # Vercel serverless entry (exports the Express app)
+├── server.js        # Express app (listens on PORT locally)
+├── vercel.json      # Rewrites /api/* to the serverless function
 ├── frontend/        # React + Vite app
 │   └── src/
 │       ├── components/   # UI components
@@ -43,7 +47,7 @@ artboard/
 
 ## Prerequisites
 
-- Node.js (v18+)
+- Node.js 20.19+ (required by Vite 7 and Mongoose 9)
 - MongoDB
 - Cloudinary account
 - Google Cloud project (for OAuth)
@@ -55,7 +59,7 @@ Create a `.env` file in the project root:
 ```env
 # Server
 PORT=5000
-NODE_ENV=local
+NODE_ENV=local   # "local" uses LOCAL_DB_URI + localhost CORS; any other value uses MONGODB_URI
 
 # Database
 LOCAL_DB_URI=mongodb://localhost:27017/artboard
@@ -84,7 +88,7 @@ CLOUD_API_SECRET=<your-cloudinary-api-secret>
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/estherdev03/artboard.git
    cd artboard
    ```
 
@@ -110,14 +114,17 @@ npm run dev
 - Backend: http://localhost:5000  
 - Frontend: http://localhost:5173  
 
-**Production:**
+**Health check:** `GET /api/ping` returns `{ "ok": true, "message": "API is alive" }`.
 
-```bash
-npm run client-build
-npm start
-```
+## Deployment (Vercel)
 
-Serves the built frontend from Express. Set `NODE_ENV=production` and `MONGODB_URI` in your environment.
+The live app runs as a single Vercel project:
+
+- The React app is built with `npm run vercel-build` and served statically from `frontend/dist`. In production the frontend calls the API on the same origin under `/api`.
+- `vercel.json` rewrites every `/api/*` request to `api/index.js`, which exports the Express app as a serverless function.
+- Before any route runs, a middleware awaits a cached MongoDB connection promise, so cold starts don't fail, and API errors are returned as JSON.
+
+Set the environment variables above in the Vercel project, using `MONGODB_URI` (MongoDB Atlas) and a `NODE_ENV` other than `local`. Point `GOOGLE_CALLBACK_URL` at `https://<your-domain>/api/auth/google/callback`.
 
 ## Scripts
 
@@ -127,7 +134,8 @@ Serves the built frontend from Express. Set `NODE_ENV=production` and `MONGODB_U
 | `npm run server` | Run backend only (nodemon)        |
 | `npm run client` | Run frontend only (Vite dev)      |
 | `npm run client-build` | Build frontend for production |
-| `npm start`   | Run production server                |
+| `npm run vercel-build` | Install and build the frontend (used by Vercel) |
+| `npm start`   | Run the Express API without nodemon |
 
 ## License
 
