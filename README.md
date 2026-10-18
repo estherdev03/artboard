@@ -1,10 +1,10 @@
-# Canva Clone
+# Artboard
 
-A full-stack design tool inspired by Canva. Create and edit designs with shapes, text, images, and templates. Features user authentication (email + Google OAuth), a visual canvas editor, and cloud-based image storage.
+A full-stack online design tool. Create and edit designs with shapes, text, images, and templates. Features user authentication (email + Google OAuth), a visual canvas editor, and cloud-based image storage.
 
-> **Note: the app is published as "Artboard"**
+> **Note on the name**
 >
-> The browser tab title (`frontend/index.html`) and the deployment URL use the name **Artboard** instead of "Canva". Fortinet's web filter flagged the site as a possible phishing or brand-impersonation page because it used the Canva name, which blocked it on networks protected by FortiGuard. Renaming the public-facing title and URL lets the site pass the filter. The repository and code still use "canva-clone" internally.
+> This project was originally called "MERN Canva" / "canva-clone". Fortinet's web filter (FortiGuard) flagged the deployed site as a possible phishing or brand-impersonation page because of the Canva name and logo, which blocked it on protected networks. The project has been renamed to **Artboard** everywhere (title, logo, package names, code, and deployment URL) and no longer loads any third-party brand assets.
 
 ## Tech Stack
 
@@ -26,7 +26,7 @@ A full-stack design tool inspired by Canva. Create and edit designs with shapes,
 ## Project Structure
 
 ```
-canva-clone/
+artboard/
 ├── config/          # Passport.js (Google OAuth)
 ├── controllers/     # Auth & design controllers
 ├── middlewares/     # JWT verification
@@ -58,7 +58,7 @@ PORT=5000
 NODE_ENV=local
 
 # Database
-LOCAL_DB_URI=mongodb://localhost:27017/canva-clone
+LOCAL_DB_URI=mongodb://localhost:27017/artboard
 MONGODB_URI=<your-mongodb-atlas-uri>
 
 # Auth
@@ -85,7 +85,7 @@ CLOUD_API_SECRET=<your-cloudinary-api-secret>
 
    ```bash
    git clone <repository-url>
-   cd canva-clone
+   cd artboard
    ```
 
 2. Install dependencies:

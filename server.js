@@ -13,7 +13,7 @@ require("./config/passport");
 app.use(express.json());
 app.use(
   session({
-    secret: process.env.JWT_SECRET || "canva-clone-secret",
+    secret: process.env.JWT_SECRET || "artboard-secret",
     resave: false,
     saveUninitialized: false,
     cookie: { secure: process.env.NODE_ENV === "production" },
