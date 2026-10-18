@@ -9,6 +9,16 @@ const {
   mongo: { ObjectId },
 } = require("mongoose");
 
+// Delivery URL that lets Cloudinary pick the best format (WebP/AVIF) and
+// compression level for the requesting browser.
+const optimizedUrl = ({ public_id }) =>
+  cloudinary.url(public_id, {
+    secure: true,
+    fetch_format: "auto",
+    quality: "auto",
+    urlAnalytics: false,
+  });
+
 class DesignController {
   createDesign = async (req, res) => {
     const form = formidable({});
@@ -21,7 +31,9 @@ class DesignController {
       });
       const [fields, files] = await form.parse(req);
       const { image } = files;
-      const { url } = await cloudinary.uploader.upload(image[0].filepath);
+      const url = optimizedUrl(
+        await cloudinary.uploader.upload(image[0].filepath),
+      );
       const design = await Design.create({
         user_id: _id,
         components: [JSON.parse(fields.design[0])],
@@ -66,7 +78,9 @@ class DesignController {
           const imageName = imageFile.split(".")[0];
           await cloudinary.uploader.destroy(imageName); //destroy old design
         }
-        const { url } = await cloudinary.uploader.upload(image[0].filepath);
+        const url = optimizedUrl(
+          await cloudinary.uploader.upload(image[0].filepath),
+        );
         await Design.findByIdAndUpdate(designId, {
           image_url: url,
           components: components,
@@ -91,7 +105,9 @@ class DesignController {
     try {
       const [_, files] = await form.parse(req);
       const { image } = files;
-      const { url } = await cloudinary.uploader.upload(image[0].filepath);
+      const url = optimizedUrl(
+        await cloudinary.uploader.upload(image[0].filepath),
+      );
 
       const userImage = await UserImage.create({
         user_id: _id,

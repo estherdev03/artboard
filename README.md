@@ -20,8 +20,8 @@ A full-stack online design tool. Create and edit designs with shapes, text, imag
 - **Canvas Editor:** Drag-and-drop design creation with shapes, text, and images
 - **Templates:** Browse and use templates for quick designs
 - **Projects:** Save and manage your designs
-- **Image Upload:** Upload custom images, backgrounds and design assets
-- **Export:** Download designs as images
+- **Image Upload:** Upload custom images, backgrounds and design assets, served through Cloudinary with automatic format and quality optimization
+- **Export:** Download designs as high-resolution (3x) PNG or JPEG
 
 ## Project Structure
 
