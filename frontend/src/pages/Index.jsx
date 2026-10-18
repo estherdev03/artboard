@@ -108,7 +108,7 @@ const Index = () => {
             What will you design today?
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-slate-400">
-            Create, edit, and share beautiful designs in a fast, focused canvas
+            Create, edit and share beautiful designs in a fast, focused canvas
             experience.
           </p>
           <button
